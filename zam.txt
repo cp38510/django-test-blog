@@ -1,0 +1,128 @@
+mkdir django
+cd django
+
+python3 -m venv myvenv
+source myvenv/bin/activate
+python3 -m pip install --upgrade pip
+
+nano requirements.txt
+Django~=2.0.6
+
+
+pip install -r requirements.txt
+pip install requests
+
+apt install git
+
+
+#registration on https://www.pythonanywhere.com/
+#«Create new API token»: bdcffe22cf57def45614173fa27fd853d509c983
+
+import requests
+my_domain = 'cp38510.pythonanywhere.com'
+username = 'cp38510'
+token = 'bdcffe22cf57def45614173fa27fd853d509c983'
+
+response = requests.post(
+  'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain}/reload/'.format(
+      username=username, domain=my_domain
+  ),
+  headers={'Authorization': 'Token {token}'.format(token=token)}
+)
+if response.status_code == 200:
+  print('All OK')
+else:
+  print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))
+
+
+####
+
+########################################################################
+
+Type's:
+
+- List []
+
+# lottery.sort() - sort list "lottery"
+# lottery.reverse() - reverse list
+# lottery.append(25) - add var 25 in list
+# lottery.pop(0) - delete var with index = 0
+
+#https://docs.python.org/3/tutorial/datastructures.html
+
+- Dictionary {}
+
+# participant['favorite_language'] = 'Python' - insert key = value
+# participant.pop('favorite_numbers')   - delete key
+
+
+
+# Set only 'True'
+
+ 
+###########################################
+
+#Create test site
+
+source myvenv/bin/activate
+
+#https://github.com/ggcarrots/django-carrots
+#Create project:
+django-admin startproject mysite .
+
+#https://docs.djangoproject.com/en/1.11/ref/settings/#language-code
+#change settings
+vim mysite/settings.py
+
+add:
+
+TIME_ZONE = 'Europe/Moscow'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+ALLOWED_HOSTS = ['127.0.0.1', 'cp38510.pythonanywhere.com']
+
+#Create sqlite3 database for site
+python manage.py migrate
+
+#Run webserver
+python manage.py runserver
+
+#Go to http://127.0.0.1:8000/
+
+###########################################
+
+#Create blog
+
+source myvenv/bin/activate
+python manage.py startapp blog
+
+
+vim mysite/settings.py
+add in INSTALLED_APPS:
+'blog',
+
+#https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-types
+#change
+vim blog/models.py
+remove all and insert https://tutorial.djangogirls.org/ru/django_models/
+
+#save changes model
+python manage.py makemigrations blog
+python manage.py migrate blog
+
+
+##########################################
+
+#Administration
+
+vim blog/admin.py
+change all to https://tutorial.djangogirls.org/ru/django_admin/
+
+#start server 
+python manage.py runserver
+#go to http://127.0.0.1:8000/admin/
+
+#create admin
+python manage.py createsuperuser
+
+
