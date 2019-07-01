@@ -213,3 +213,43 @@ vim blog/templates/blog/base.html
 
 #Create teplate for post page
 vim blog/templates/blog/post_detail.html
+
+
+#Download to repo
+git add --all . && git commit -m "Add new files" && git push
+
+#Go to PythonAnywhere and update files
+git pull
+workon cp38510.pythonanywhere.com
+python manage.py collectstatic
+
+#Check changes https://cp38510.pythonanywhere.com/
+
+#We changed blog/urls.py, where we create template URL with name "post_detail", this template refet to view file "views.post_detail"
+
+###################################################
+
+Forms in Django
+#https://tutorial.djangogirls.org/ru/django_forms/
+
+#Add form:
+vim blog/forms.py
+
+#Add link to form page:
+vim blog/templates/blog/base.html
+
+#Add URL:
+vim blog/urls.py
+
+#Add view:
+vim blog/views.py
+
+#Add template for page with edit form:
+vim blog/templates/blog/post_edit.html
+
+###################################################
+
+#Security
+#https://tutorial.djangogirls.org/ru/django_forms/
+
+vim blog/templates/blog/base.html
