@@ -253,3 +253,12 @@ vim blog/templates/blog/post_edit.html
 #https://tutorial.djangogirls.org/ru/django_forms/
 
 vim blog/templates/blog/base.html
+
+
+###################################################
+
+
+#For update site version on pythonanywhere.com
+git pull
+workon <your-pythonanywhere-domain>.pythonanywhere.com
+python manage.py collectstatic
