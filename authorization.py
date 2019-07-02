@@ -2,7 +2,7 @@ import requests
 
 my_domain = 'cp38510.pythonanywhere.com'
 username = 'cp38510'
-token = 'bdcffe22cf57def45614173fa27fd853d509c983'
+token = ''
 
 response = requests.post(
   'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain}/reload/'.format(
